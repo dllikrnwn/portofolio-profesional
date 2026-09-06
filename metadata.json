@@ -1,0 +1,6 @@
+{
+  "name": "Portofolio Profesional",
+  "description": "Portofolio profesional modern dengan profil pribadi, pengalaman kerja, galeri proyek interaktif, dan formulir kontak.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
