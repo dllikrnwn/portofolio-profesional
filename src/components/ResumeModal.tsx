@@ -28,7 +28,7 @@ export default function ResumeModal({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer pointer-events-auto"
+        className="absolute inset-0 bg-ink/40 backdrop-blur-sm cursor-pointer pointer-events-auto"
       />
 
       <motion.div
@@ -36,32 +36,32 @@ export default function ResumeModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.97, y: 10 }}
         transition={{ duration: 0.3 }}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0e0e16] border border-white/[0.08] rounded-2xl z-10 flex flex-col no-print"
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-surface border border-line rounded-2xl z-10 flex flex-col no-print"
       >
-        <div className="px-6 py-3 border-b border-white/[0.06] flex justify-between items-center bg-[#050508]">
+        <div className="px-6 py-3 border-b border-line flex justify-between items-center bg-base">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-[#a78bfa]">Resume</span>
-            <span className="text-[#5a5a70] text-xs hidden sm:inline">|</span>
-            <p className="font-medium text-sm text-[#9494b0] hidden sm:block">CV_Fadli_Kurniawan.pdf</p>
+            <span className="text-xs font-semibold text-accent-deep">Resume</span>
+            <span className="text-muted text-xs hidden sm:inline">|</span>
+            <p className="font-medium text-sm text-muted hidden sm:block">CV_Fadli_Kurniawan.pdf</p>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={handlePrint}
-              className="flex items-center gap-2 px-3 py-1.5 bg-[#a78bfa] hover:bg-[#9272f5] text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer">
+              className="clay-btn flex items-center gap-2 px-3 py-1.5 text-xs cursor-pointer">
               <Printer size={13} /><span>Simpan PDF</span>
             </button>
             <button onClick={onClose}
-              className="p-1.5 rounded-lg bg-[#0e0e16] border border-white/[0.06] text-[#7a7a90] hover:text-white transition-colors" aria-label="Close">
+              className="p-1.5 rounded-xl bg-accent/10 border border-accent/25 text-muted hover:text-ink transition-colors cursor-pointer" aria-label="Close">
               <X size={16} />
             </button>
           </div>
         </div>
 
-        <div className="p-3 bg-[#a78bfa]/5 border-b border-white/[0.04] text-center text-xs text-[#a78bfa]/80">
+        <div className="p-3 bg-accent/12 border-b border-accent/20 text-center text-xs font-semibold text-accent-deep">
           Simpan sebagai PDF dari menu cetak yang terbuka.
         </div>
 
-        <div className="p-4 sm:p-10 overflow-x-auto bg-[#050508] flex justify-center items-start flex-1">
-          <div className="w-full md:min-w-[210mm] md:max-w-[210mm] bg-white text-[#1e293b] shadow-2xl p-6 sm:p-12 rounded-lg flex flex-col justify-between select-text text-left font-[var(--font-body)] text-xs">
+        <div className="p-4 sm:p-10 overflow-x-auto bg-base flex justify-center items-start flex-1">
+          <div className="w-full md:min-w-[210mm] md:max-w-[210mm] bg-white text-[#1e293b] shadow-2xl p-6 sm:p-12 rounded-lg flex flex-col justify-between select-text text-left font-body text-xs">
             
             <div className="border-b-2 border-slate-200 pb-5 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
               <div className="space-y-1">
@@ -155,26 +155,15 @@ export default function ResumeModal({
                   Pendidikan
                 </h3>
                 <div className="space-y-2 text-[11px]">
-                  <div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5">
-                      <p className="font-bold text-slate-800">Sistem Informasi</p>
-                      <span className="text-slate-400 text-[10px]">2024 - Sekarang</span>
+                  {profile.education.map((edu, idx) => (
+                    <div key={edu.institution}>
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5">
+                        <p className="font-bold text-slate-800">{edu.program}</p>
+                        <span className="text-slate-400 text-[10px]">{edu.period}</span>
+                      </div>
+                      <p className="text-slate-500">{edu.institution}</p>
                     </div>
-                    <p className="text-slate-500">Universitas Bina Sarana Informatika</p>
-                  </div>
-                  <div className="h-px bg-slate-100" />
-                  <div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5">
-                      <p className="font-bold text-slate-800">Teknik Komputer Jaringan</p>
-                      <span className="text-slate-400 text-[10px]">2020 - 2023</span>
-                    </div>
-                    <p className="text-slate-500">SMK Telkom Jakarta</p>
-                  </div>
-                  <div className="h-px bg-slate-100" />
-                  <div>
-                    <p className="font-bold text-slate-800">Hobi & Aktivitas</p>
-                    <p className="text-slate-500 mt-0.5">Bermusik, Konten digital & Design grafis</p>
-                  </div>
+                  ))}
                 </div>
               </div>
 
@@ -256,24 +245,15 @@ export default function ResumeModal({
               Pendidikan
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              <div>
-                <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold", fontSize: "10px", color: "#1e293b" }}>
-                  <span>Sistem Informasi</span>
-                  <span style={{ fontSize: "9px", color: "#64748b" }}>2024 - Sekarang</span>
+              {profile.education.map((edu, idx) => (
+                <div key={edu.institution} style={{ borderTop: `${idx === 0 ? "none" : "1px dashed #e2e8f0"}`, paddingTop: idx === 0 ? "0" : "4.5px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold", fontSize: "10px", color: "#1e293b" }}>
+                    <span>{edu.program}</span>
+                    <span style={{ fontSize: "9px", color: "#64748b" }}>{edu.period}</span>
+                  </div>
+                  <p style={{ fontSize: "9.5px", color: "#475569", margin: "1px 0" }}>{edu.institution}</p>
                 </div>
-                <p style={{ fontSize: "9.5px", color: "#475569", margin: "1px 0" }}>Universitas Bina Sarana Informatika</p>
-              </div>
-              <div style={{ borderTop: "1px dashed #e2e8f0", paddingTop: "4.5px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold", fontSize: "10px", color: "#1e293b" }}>
-                  <span>Teknik Komputer Jaringan</span>
-                  <span style={{ fontSize: "9px", color: "#64748b" }}>2020 - 2023</span>
-                </div>
-                <p style={{ fontSize: "9.5px", color: "#475569", margin: "1px 0" }}>SMK Telkom Jakarta</p>
-              </div>
-              <div style={{ borderTop: "1px dashed #e2e8f0", paddingTop: "4.5px" }}>
-                <p style={{ fontSize: "10px", fontWeight: "bold", color: "#1e293b", margin: "0 0 2px 0" }}>Hobi & Aktivitas</p>
-                <p style={{ fontSize: "9.5px", color: "#475569", margin: "0" }}>Bermusik, Konten digital & Design grafis</p>
-              </div>
+              ))}
             </div>
           </div>
         </div>

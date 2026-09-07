@@ -8,6 +8,11 @@ export interface Profile {
   email: string;
   phone: string;
   resumePdfUrl: string;
+  education: {
+    program: string;
+    institution: string;
+    period: string;
+  }[];
   socials: {
     github?: string;
     linkedin?: string;
