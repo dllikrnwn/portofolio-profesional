@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import fadliPhoto from "../dli.59.28.jpeg";
+import dllikrnwnImg from "./assets/images/dllikrnwn.jpeg";
 
 const navLinks = [
   { title: "Profil", href: "#profile" },
   { title: "Pengalaman", href: "#experience" },
   { title: "Proyek", href: "#projects" },
-  { title: "Kontak", href: "#contact" }
+  { title: "Kontak", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -20,11 +21,19 @@ export default function Navbar() {
       setScrolled(window.scrollY > 50);
       const scrollPosition = window.scrollY + 180;
       const sections = ["profile", "experience", "projects", "contact"];
-      if (window.scrollY < 100) { setActiveSection("hero"); return; }
+      if (window.scrollY < 100) {
+        setActiveSection("hero");
+        return;
+      }
       for (const section of sections) {
         const el = document.getElementById(section);
-        if (el && scrollPosition >= el.offsetTop && scrollPosition < el.offsetTop + el.offsetHeight) {
-          setActiveSection(section); break;
+        if (
+          el &&
+          scrollPosition >= el.offsetTop &&
+          scrollPosition < el.offsetTop + el.offsetHeight
+        ) {
+          setActiveSection(section);
+          break;
         }
       }
     };
@@ -49,11 +58,19 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <a
             href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="group flex items-center space-x-2.5"
           >
             <div className="h-8 w-8 rounded-full overflow-hidden border border-line ring-2 ring-accent/20 transition-transform duration-300 group-hover:scale-105">
-              <img src={fadliPhoto} alt="Fadli" referrerPolicy="no-referrer" className="h-full w-full object-cover" />
+              <img
+                src={dllikrnwnImg}
+                alt="Fadli"
+                referrerPolicy="no-referrer"
+                className="h-full w-full object-cover"
+              />
             </div>
             <span className="text-base font-semibold text-ink tracking-tight">
               Fadli<span className="text-accent-deep">.K</span>
@@ -65,7 +82,10 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); handleLinkClick(link.href); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href);
+                }}
                 className={`relative px-3.5 py-2 text-sm rounded-lg transition-colors duration-200 ${
                   activeSection === link.href.substring(1)
                     ? "text-accent-deep font-semibold"
@@ -129,7 +149,10 @@ export default function Navbar() {
                   <a
                     key={link.href}
                     href={link.href}
-                    onClick={(e) => { e.preventDefault(); handleLinkClick(link.href); }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick(link.href);
+                    }}
                     className={`py-3 px-4 rounded-lg text-sm transition-all flex items-center min-h-[44px] cursor-pointer ${
                       activeSection === link.href.substring(1)
                         ? "bg-accent/15 text-accent-deep font-semibold"
