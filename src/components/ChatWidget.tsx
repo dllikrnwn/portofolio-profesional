@@ -37,6 +37,10 @@ export default function ChatWidget() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, loading, isOpen]);
 
+  const replaceLastAssistant = (text: string) => {
+    setMessages((prev) => prev.map((m, i) => (i === prev.length - 1 ? { role: "assistant", text } : m)));
+  };
+
   const send = async (raw: string) => {
     const text = raw.trim();
     if (!text || loading) return;
@@ -50,11 +54,50 @@ export default function ChatWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Request gagal");
-      setMessages((prev) => [...prev, { role: "assistant", text: data.reply }]);
+      const contentType = res.headers.get("content-type") || "";
+
+      if (res.ok && contentType.includes("text/event-stream")) {
+        // Stream: tampilkan bubble AI kosong dulu, isi bertahap
+        setMessages((prev) => [...prev, { role: "assistant", text: "" }]);
+        const reader = res.body!.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+        let reply = "";
+
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const events = buffer.split("\n\n");
+          buffer = events.pop();
+          for (const ev of events) {
+            const line = ev.split("\n").find((l) => l.startsWith("data:"));
+            if (!line) continue;
+            const payload = line.slice(5).trim();
+            if (!payload || payload === "[DONE]") continue;
+            try {
+              const data = JSON.parse(payload);
+              if (typeof data.reply === "string") {
+                reply += data.reply;
+                replaceLastAssistant(reply);
+              } else if (data.error) {
+                reply = data.error;
+                replaceLastAssistant(data.error);
+              }
+            } catch { /* abaikan event tak dikenal */ }
+          }
+        }
+        if (!reply.trim()) replaceLastAssistant("Maaf, tidak ada jawaban. Coba lagi nanti ya.");
+      } else {
+        // Bukan SSE (mis. error method): tampilkan pesan dari server apa adanya
+        const data = await res.json().catch(() => ({}));
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", text: data.reply || data.error || "Maaf, terjadi kendala. Coba lagi." },
+        ]);
+      }
     } catch {
-      setMessages((prev) => [...prev, { role: "assistant", text: "Maaf, terjadi kendala. Silakan coba lagi atau hubungi faadlikurniawan9@gmail.com." }]);
+      setMessages((prev) => [...prev, { role: "assistant", text: "Maaf, terjadi kendala. Silakan coba lagi ya." }]);
     } finally {
       setLoading(false);
     }
@@ -108,23 +151,32 @@ export default function ChatWidget() {
             {/* Messages */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3 bg-base/60">
               {messages.map((m, i) => (
-                <div key={i} className={`flex items-end gap-2 ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                  className={`flex items-end gap-2 ${m.role === "user" ? "justify-end" : "justify-start"}`}
+                >
                   {m.role === "assistant" && (
                     <div className="h-6 w-6 shrink-0 rounded-full clay-btn flex items-center justify-center mb-1">
                       <Bot size={12} />
                     </div>
                   )}
-                  <div className={`chat-bubble ${m.role === "user" ? "chat-bubble-user" : "chat-bubble-assistant"} max-w-[80%] text-[13px] leading-relaxed`}>
+                  <div className={`chat-bubble ${m.role === "user" ? "chat-bubble-user" : "chat-bubble-assistant"} max-w-[80%] text-[13px] leading-relaxed whitespace-pre-wrap`}>
                     {m.text}
+                    {m.role === "assistant" && loading && m.text === "" && (
+                      <span className="animate-pulse">…</span>
+                    )}
                   </div>
                   {m.role === "user" && (
                     <div className="h-6 w-6 shrink-0 rounded-full clay-inset flex items-center justify-center text-muted mb-1">
                       <User size={12} />
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
-              {loading && <TypingDots />}
+              {loading && messages[messages.length - 1]?.text === "" && <TypingDots />}
             </div>
 
             {/* Suggestions */}
