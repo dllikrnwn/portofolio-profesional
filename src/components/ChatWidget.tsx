@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { Sparkles, X, Send, User } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -113,10 +113,15 @@ export default function ChatWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Tutup chat" : "Buka chat"}
-        className="clay-btn fixed bottom-6 left-6 sm:left-auto sm:right-6 z-40 p-4 rounded-full cursor-pointer no-print"
+        aria-label={isOpen ? "Tutup chat" : "Tanya AI"}
+        className="clay-btn fixed bottom-6 left-6 sm:left-auto sm:right-6 z-40 pl-4 pr-5 py-3 rounded-full flex items-center gap-2 cursor-pointer no-print shadow-lg"
       >
-        {isOpen ? <X size={20} /> : <MessageCircle size={20} />}
+        {isOpen ? <X size={18} /> : (
+          <>
+            <Sparkles size={18} />
+            <span className="text-sm font-semibold">{isOpen ? "" : "Tanya AI"}</span>
+          </>
+        )}
       </motion.button>
 
       <AnimatePresence>
@@ -131,7 +136,7 @@ export default function ChatWidget() {
             {/* Header */}
             <div className="px-4 py-3 bg-base border-b border-line flex items-center gap-2.5">
               <div className="h-9 w-9 rounded-full clay-btn flex items-center justify-center">
-                <Bot size={18} />
+                <Sparkles size={18} />
               </div>
               <div className="flex-1">
                 <p className="text-sm font-semibold text-ink leading-tight">Asisten Fadli</p>
@@ -160,7 +165,7 @@ export default function ChatWidget() {
                 >
                   {m.role === "assistant" && (
                     <div className="h-6 w-6 shrink-0 rounded-full clay-btn flex items-center justify-center mb-1">
-                      <Bot size={12} />
+                      <Sparkles size={12} />
                     </div>
                   )}
                   <div className={`chat-bubble ${m.role === "user" ? "chat-bubble-user" : "chat-bubble-assistant"} max-w-[80%] text-[13px] leading-relaxed whitespace-pre-wrap`}>

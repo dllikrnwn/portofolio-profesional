@@ -1,5 +1,6 @@
 import { Profile, Experience, Project, SkillCategory } from "./types";
 import fadliPhoto from "./dli.59.28.jpeg";
+import dllikrnwnImg from "./assets/images/dllikrnwn.jpeg";
 import siperpustImg from "./assets/images/siperpust_showcase_1779405941977.png";
 import couplealbumImg from "./assets/images/Couple Album Showcase.jpeg";
 import absensiImg from "./assets/images/absensi_showcase.png";
@@ -11,7 +12,7 @@ export const profileData: Profile = {
   subTitle:
     "Menghadirkan perpaduan estetis antara Web & UI/UX Design, Landing Page Design, dan Mobile App Design untuk solusi digital yang interaktif dan komunikatif.",
   bio: "Mahasiswa Sistem Informasi yang memiliki minat dibidang Web Development dan UI/UX Design. Terbiasa merancang interface, membuat website responsive, serta menggunakan AI sebagai tools pendukung dalam proses desain dan pengembangan.",
-  avatarUrl: fadliPhoto,
+  avatarUrl: dllikrnwnImg,
   location: "Jakarta Barat, Indonesia",
   email: "faadlikurniawan9@gmail.com",
   phone: "081285356113",
