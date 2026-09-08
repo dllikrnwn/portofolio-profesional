@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
-import fadliPhoto from "../dli.59.28.jpeg";
-import dllikrnwnImg from "./assets/images/dllikrnwn.jpeg";
+import dllikrnwnImg from "../assets/images/dllikrnwn.jpeg";
 
 const navLinks = [
   { title: "Profil", href: "#profile" },
