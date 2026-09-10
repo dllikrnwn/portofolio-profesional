@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dllikrnwn-portofolio.netlify.app/sitemap.xml
