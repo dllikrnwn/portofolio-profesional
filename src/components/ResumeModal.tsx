@@ -171,7 +171,7 @@ export default function ResumeModal({
 
             <div className="border-t border-slate-200 pt-3 text-center text-[9px] text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-1">
               <span>Dibuat dari Portofolio Interaktif Fadli Kurniawan.</span>
-              <span>https://fadlikurniawan.com</span>
+              <span>https://dllikrnwn-portofolio.netlify.app</span>
             </div>
 
           </div>
@@ -260,7 +260,7 @@ export default function ResumeModal({
 
         <div style={{ borderTop: "1px solid #cbd5e1", marginTop: "25px", paddingTop: "6px", display: "flex", justifyContent: "space-between", fontSize: "8.5px", color: "#94a3b8" }}>
           <span>Portofolio Fadli Kurniawan.</span>
-          <span>https://fadlikurniawan.com</span>
+          <span>dllikrnwn-portofolio.netlify.app</span>
         </div>
 
       </div>
