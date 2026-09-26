@@ -5,6 +5,7 @@ import siperpustImg from "./assets/images/siperpust_showcase_1779405941977.png";
 import couplealbumImg from "./assets/images/Couple Album Showcase.jpeg";
 import absensiImg from "./assets/images/absensi_showcase.png";
 import fastraImg from "./assets/images/fastracode.jpeg";
+import buluspaceImg from "./assets/images/buluspace_showcase.jpeg";
 
 export const profileData: Profile = {
   name: "Fadli Kurniawan",
@@ -125,6 +126,28 @@ export const experiencesData: Experience[] = [
       "AI Tools",
     ],
   },
+  {
+    id: "exp5",
+    role: "Bulu Space | Full-Stack Web Development",
+    company: "Project Pribadi",
+    period: "Apr 2025 - Mei 2025",
+    location: "Jakarta, Indonesia",
+    description: [
+      "Mengembangkan website resmi Bulu Space, layanan waxing dan perawatan bagi pelanggan di Jakarta.",
+      "Membangun backend dengan Node.js agar layanan berjalan cepat, aman, dan stabil.",
+      "Merancang antarmuka yang modern dan responsif dengan TailwindCSS untuk desktop maupun mobile.",
+      "Menerapkan structured data agar informasi outlet mudah ditemukan pada hasil pencarian.",
+    ],
+    skills: [
+      "React",
+      "Node.js",
+      "Vite",
+      "TailwindCSS",
+      "JavaScript",
+      "HTML",
+      "CSS",
+    ],
+  },
 ];
 
 export const organizationsData: Experience[] = [
@@ -170,6 +193,35 @@ export const organizationsData: Experience[] = [
 ];
 
 export const projectsData: Project[] = [
+  {
+    id: "proj5",
+    title: "Bulu Space - Website Waxing Store",
+    category: "Web",
+    summary:
+      "Website resmi Bulu Space, layanan waxing dan perawatan premium di Jakarta yang menyajikan informasi layanan, keunggulan, lokasi outlet, serta detail ruangan dan fasilitas.",
+    description:
+      "Bulu Space adalah layanan waxing dan perawatan premium di Jakarta. Website ini berfungsi sebagai company profile sekaligus pusat informasi bagi calon pelanggan, dibangun menggunakan React untuk antarmuka dan Node.js untuk backend. Frontend dikembangkan dengan Vite dan TailwindCSS agar tampilan modern, responsif, dan ringan di berbagai perangkat. Situs dilengkapi structured data agar informasi bisnis mudah ditemukan pada mesin pencari, serta penyajian layanan, keunggulan, lokasi outlet, dan fasilitas.",
+    technologies: [
+      "React",
+      "Node.js",
+      "Vite",
+      "TailwindCSS",
+      "JavaScript",
+      "HTML",
+      "CSS",
+    ],
+    liveUrl: "https://buluspace.com",
+    imageUrl: buluspaceImg,
+    features: [
+      "Landing page dengan hero promo first time waxing dan CTA booking yang jelas.",
+      "Halaman treatment berisi layanan waxing bulu, Brazilian wax, dan natural sugar.",
+      "Section keunggulan treatment untuk menjelaskan alasan memilih Bulu Space.",
+      "Halaman lokasi dengan dua outlet di Jakarta Barat dan Jakarta Selatan lengkap dengan peta.",
+      "Informasi ruang dan fasilitas untuk meningkatkan kepercayaan calon pelanggan.",
+      "Structured data agar informasi bisnis mudah ditemukan pada hasil pencarian.",
+      "Tampilan responsif untuk desktop, tablet, dan mobile.",
+    ],
+  },
   {
     id: "proj1",
     title: "SIPERPUST - Online Library Web",

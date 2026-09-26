@@ -18,6 +18,7 @@ PENGALAMAN KERJA (proyek pribadi):
 - Couple Album — Full-Stack Web: gallery foto/video/catatan; React, Vite, Tailwind, Framer Motion; Node/Express/MySQL; JWT+bcrypt; Cloudinary; Nodemailer; node-cron; download ZIP; deploy Vercel & Render.
 - Mobile Attendance App — Full-Stack Mobile: Flutter, Riverpod, Dio; absensi GPS & foto selfie; Firebase Cloud Messaging; secure storage.
 - SIPERPUST — Online Library Web: Laravel, PHP, MySQL, Sanctum; export PDF/Excel; Midtrans; Tailwind + Vite.
+- Bulu Space — Full-Stack Web: website resmi toko waxing & perawatan di Jakarta; React + Node.js; Vite, TailwindCSS; structured data; 2 outlet.
 
 ORGANISASI:
 - Wakil Ketua Himpunan Sistem Informasi (HIMSI) UBSI — koordinasi, pengawasan divisi (2024-sekarang).
@@ -28,6 +29,7 @@ PROYEK:
 - Mobile Attendance App — aplikasi absensi full-stack (Flutter + Laravel).
 - FastraCode — landing page layanan desain & web dev (fastracode.vercel.app).
 - Couple Album — aplikasi web kenangan foto/video (React + Node) (couple-album-3o23.vercel.app).
+- Bulu Space — website resmi layanan waxing & perawatan di Jakarta (React + Node.js) (buluspace.com).
 
 KEAHLIAN:
 - Web & UI/UX: Figma, Canva, Landing Page Design, Responsive Design, Prototyping, Wireframing.
