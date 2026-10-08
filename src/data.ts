@@ -221,6 +221,8 @@ export const projectsData: Project[] = [
       "Structured data agar informasi bisnis mudah ditemukan pada hasil pencarian.",
       "Tampilan responsif untuk desktop, tablet, dan mobile.",
     ],
+    status: "Masih Aktif",
+    label: "Client / Project",
   },
   {
     id: "proj1",

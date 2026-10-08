@@ -44,6 +44,8 @@ export interface Project {
   githubUrl?: string;
   imageUrl: string;
   features: string[];
+  status?: string;
+  label?: string;
 }
 
 export interface SkillCategory {
