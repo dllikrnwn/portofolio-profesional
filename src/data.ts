@@ -129,8 +129,8 @@ export const experiencesData: Experience[] = [
   {
     id: "exp5",
     role: "Bulu Space | Full-Stack Web Development",
-    company: "Project Pribadi",
-    period: "Apr 2025 - Mei 2025",
+    company: "Client / Project",
+    period: "Masih Aktif",
     location: "Jakarta, Indonesia",
     description: [
       "Mengembangkan website resmi Bulu Space, layanan waxing dan perawatan bagi pelanggan di Jakarta.",
